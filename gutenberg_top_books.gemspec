@@ -6,12 +6,12 @@ require "gutenberg_top_books/version"
 Gem::Specification.new do |spec|
   spec.name          = "gutenberg_top_books"
   spec.version       = GutenbergTopBooks::VERSION
-  spec.authors       = ["Cecily2"]
+  spec.authors       = ["Cecily Downs"]
   spec.email         = ["cecily.downs@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{CLI interface for viewing the most downloaded books on Project Gutenberg.}
+  spec.description   = %q{A CLI interface that allows the user to view the most downloaded books on Project Gutenberg in the specified time range and request a download link.}
+  spec.homepage      = "https://github.com/Cecily2/gutenberg-top-books-cli-gem"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -32,4 +32,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "pry"
+  spec.add_dependency "nokogiri"
 end
