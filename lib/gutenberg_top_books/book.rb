@@ -1,4 +1,4 @@
-class Book
+class GutenbergTopBooks::Book
   attr_accessor :name, :author, :html, :epub, :kindle
 
   def initialize(name, author)
@@ -11,5 +11,5 @@ class Book
       self.send("#{key}=", value)
     end
   end
-  
+
 end

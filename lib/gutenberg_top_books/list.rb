@@ -1,4 +1,4 @@
-class List
+class GutenbergTopBooks::List
 
   def initialize(*list)
     @list = []

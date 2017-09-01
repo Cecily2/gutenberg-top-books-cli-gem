@@ -1,9 +1,9 @@
-class CLI
+class GutenbergTopBooks::CLI
 
   def run
     time = choose_data_time
     count = choose_title_count
-    
+
   end
 
   def choose_data_time
