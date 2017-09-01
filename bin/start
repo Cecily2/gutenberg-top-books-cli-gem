@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "gutenberg_top_books"
+
+GutenbergTopBooks::CLI.new.run
