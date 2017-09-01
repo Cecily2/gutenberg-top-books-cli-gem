@@ -25,7 +25,6 @@ class GutenbergTopBooks::Scraper
       books_array << { :title => title, :author => author, :link => link }
     end
     books_array
-    binding.pry
   end
 
   def self.scrape_download_links(url)
