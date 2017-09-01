@@ -1,27 +1,31 @@
 class GutenbergTopBooks::List
 
-  def initialize(*list)
+  def initialize(list = nil)
     @list = []
     add_to_list(list) unless list == nil
   end
 
   def add_to_list(list)
-    # Accepts array of book hashes?
     list.each do |book|
-      title = book[title]
-      author = book[author]
-      new_book = Book.new(title, author)
+      title = book[:title]
+      author = book[:author]
+      link = book[:link]
+      new_book = GutenbergTopBooks::Book.new(title, author, link)
       @list << new_book
+    end
+  end
+
+  def print_titles
+    @list.each.with_index(1) do |book, index|
+      index > 9 ? space = " " : space = "  "
+      puts "#{index}.#{space}#{book.title}"
+      puts "    by #{book.author}"
+      puts "--------------------"
     end
   end
 
   def list
     @list
   end
-
-# Receives info from scraper
-# Processes it
-# Creates books (OR tells the book class to do this)
-# Creates list of those books (for CLI to print)
 
 end
