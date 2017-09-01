@@ -4,6 +4,8 @@ class GutenbergTopBooks::CLI
     time = choose_data_time
     count = choose_title_count
     data = GutenbergTopBooks::Scraper.scrape_list(time, count)
+    list = GutenbergTopBooks::List.new(data)
+
   end
 
   def choose_data_time
@@ -11,11 +13,11 @@ class GutenbergTopBooks::CLI
     puts "Yesterday  |  Last 7 Days   |  30 Days"
     time = gets.strip
     if time.downcase == "yesterday"
-      answer = "yesterday"
+      answer = 1
     elsif time.include?("7") || time.downcase.include?("seven")
-      answer = "7"
+      answer = 7
     elsif time.include?("30") || time.downcase.include?("thirty")
-      answer = "30"
+      answer = 30
     else
       puts "Invalid input"
     end
