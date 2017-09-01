@@ -20,12 +20,12 @@ class GutenbergTopBooks::Scraper
     correct_list.css("li")[0 .. count-1].each do |book|
       book_info = book.css("a").text.split(" by ")
       title = book_info[0]
-      # author = book_info[1].split(" (")[0]
-      author = "test"
+      author = book_info[1].split(" (")[0]
       link = book.css("a").attribute("href").value
       books_array << { :title => title, :author => author, :link => link }
     end
     books_array
+    binding.pry
   end
 
   def self.scrape_download_links(url)
