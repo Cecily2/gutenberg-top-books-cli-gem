@@ -3,4 +3,4 @@
 require "bundler/setup"
 require "gutenberg_top_books"
 
-GutenbergTopBooks::CLI.new.run
+GutenbergTopBooks::Scraper.scrape_list(7, 10)
