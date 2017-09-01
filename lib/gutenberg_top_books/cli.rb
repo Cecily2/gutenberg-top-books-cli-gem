@@ -1,7 +1,9 @@
 class CLI
 
   def run
-
+    time = choose_data_time
+    count = choose_title_count
+    
   end
 
   def choose_data_time
@@ -18,6 +20,12 @@ class CLI
       puts "Invalid input"
     end
     answer
+  end
+
+  def choose_title_count
+    puts "How many titles would you like to see? (Enter 1-100)"
+    count = gets.strip
+    count
   end
 
 
