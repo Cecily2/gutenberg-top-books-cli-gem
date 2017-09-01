@@ -7,25 +7,25 @@ class GutenbergTopBooks::Scraper
 
 
     correct_list = nil
-    if count == "yesterday"
+    if count == 1
       correct_list = doc.css("h2#books-last1 + ol").first.children
-    elsif count == "7"
+    elsif count == 7
       correct_list = doc.css("h2#books-last7 + ol").first.children
     else
       correct_list = doc.css("h2#books-last30 + ol").first.children
     end
 
-    correct_list.css("li").each do |book|
+    books_array = []
+
+    correct_list.css("li")[0 .. count-1].each do |book|
       book_info = book.css("a").text.split(" by ")
       title = book_info[0]
-      author = book_info[1].split(" (")[0]
-      binding.pry
+      # author = book_info[1].split(" (")[0]
+      author = "test"
       link = book.css("a").attribute("href").value
+      books_array << { :title => title, :author => author, :link => link }
     end
-
-
-    # Get COUNT items from that list
-
+    books_array
   end
 
   def self.scrape_download_links(url)
