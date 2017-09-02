@@ -6,8 +6,12 @@ class GutenbergTopBooks::CLI
     data = GutenbergTopBooks::Scraper.scrape_list(time, count)
     list = GutenbergTopBooks::List.new(data)
     list.print_titles
-
-
+    title_number = view_download_links
+    title_object = list.get_book_by_number(title_number)
+    title_download_links = GutenbergTopBooks::Scraper.scrape_download_links(title_object.link)
+    title_object.add_download_urls(title_download_links)
+    download_choice = choose_download_options
+    open_in_browser(title_object, download_choice)
   end
 
   def choose_data_time
@@ -32,5 +36,21 @@ class GutenbergTopBooks::CLI
     count.to_i
   end
 
+  def view_download_links
+    puts "Enter the number of a book to view download options:"
+    num = gets.strip
+    num.to_i
+  end
+
+  def choose_download_options
+    puts "View in browser: HTML, ePub, or Kindle?"
+    choice = gets.strip
+    choice.downcase
+  end
+
+  def open_in_browser(book, format)
+    url = "http://" + book.send("#{format}")
+    system('open', url)
+  end
 
 end
