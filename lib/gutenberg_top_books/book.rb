@@ -1,8 +1,8 @@
 class GutenbergTopBooks::Book
-  attr_accessor :name, :author, :link, :html, :epub, :kindle
+  attr_accessor :title, :author, :link, :html, :epub, :kindle
 
-  def initialize(name, author, link)
-    @name = name
+  def initialize(title, author, link)
+    @title = title
     @author = author
     @link = link
   end
