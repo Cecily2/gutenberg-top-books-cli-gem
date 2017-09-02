@@ -28,8 +28,4 @@ class GutenbergTopBooks::List
     @list[num - 1]
   end
 
-  def list
-    @list
-  end
-
 end
