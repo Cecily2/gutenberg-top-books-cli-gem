@@ -5,6 +5,8 @@ class GutenbergTopBooks::CLI
     count = choose_title_count
     data = GutenbergTopBooks::Scraper.scrape_list(time, count)
     list = GutenbergTopBooks::List.new(data)
+    list.print_titles
+
 
   end
 
@@ -27,7 +29,7 @@ class GutenbergTopBooks::CLI
   def choose_title_count
     puts "How many titles would you like to see? (Enter 1-100)"
     count = gets.strip
-    count
+    count.to_i
   end
 
 
