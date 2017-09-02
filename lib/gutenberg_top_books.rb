@@ -1,5 +1,8 @@
-require "gutenberg_top_books/version"
+require 'open-uri'
+require 'nokogiri'
 
-module GutenbergTopBooks
-  # Your code goes here...
-end
+require_relative "./gutenberg_top_books/version"
+require_relative "./gutenberg_top_books/book"
+require_relative "./gutenberg_top_books/cli"
+require_relative "./gutenberg_top_books/list"
+require_relative "./gutenberg_top_books/scraper"
