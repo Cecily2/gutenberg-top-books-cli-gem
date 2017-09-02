@@ -3,10 +3,10 @@ class GutenbergTopBooks::CLI
   def run
     # Get time period and item count preferences from user
     time = choose_data_time
-    count = choose_title_count
+    @count = choose_title_count
 
     # Scrape data, add to list, and print a list of titles
-    data = GutenbergTopBooks::Scraper.scrape_list(time, count)
+    data = GutenbergTopBooks::Scraper.scrape_list(time, @count)
     list = GutenbergTopBooks::List.new(data)
     list.print_titles
 
@@ -34,7 +34,8 @@ class GutenbergTopBooks::CLI
     elsif time.include?("30") || time.downcase.include?("thirty")
       answer = 30
     else
-      puts "Invalid input"
+      error
+      answer = choose_data_time
     end
     answer
   end
@@ -42,24 +43,43 @@ class GutenbergTopBooks::CLI
   def choose_title_count
     puts "How many titles would you like to see? (Enter 1-100)"
     count = gets.strip
-    count.to_i
+    answer = count.to_i
+    if answer < 1 || answer > 100
+      error
+      answer = choose_title_count
+    end
+    answer
   end
 
   def view_download_links
     puts "Enter the number of a book to view download options:"
     num = gets.strip
-    num.to_i
+    answer = num.to_i
+    if answer < 1 || answer > @count
+      error
+      answer = view_download_links
+    end
+    answer
   end
 
   def choose_download_options
     puts "View in browser: HTML, ePub, or Kindle?"
     choice = gets.strip
-    choice.downcase
+    answer = choice.downcase
+    unless answer.include?("html") || answer.include?("epub") || answer.include?("kindle")
+      error
+      answer = choose_download_options
+    end
+    answer
   end
 
   def open_in_browser(book, format)
     url = "http://" + book.send("#{format}")
     system('open', url)
+  end
+
+  def error
+    puts "Invalid input! Try again."
   end
 
 end
