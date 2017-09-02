@@ -24,6 +24,10 @@ class GutenbergTopBooks::List
     end
   end
 
+  def get_book_by_number(num)
+    @list[num - 1]
+  end
+
   def list
     @list
   end
