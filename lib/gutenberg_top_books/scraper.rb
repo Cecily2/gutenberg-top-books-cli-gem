@@ -5,7 +5,6 @@ class GutenbergTopBooks::Scraper
     # Look at correct list based on TIME argument
     # "7", "30", or "yesterday"
 
-
     correct_list = nil
     if count == 1
       correct_list = doc.css("h2#books-last1 + ol").first.children
@@ -28,6 +27,13 @@ class GutenbergTopBooks::Scraper
   end
 
   def self.scrape_download_links(url)
+    doc = Nokogiri::HTML(open("https://www.gutenberg.org#{url}", "Accept-Encoding" => ""))
+
+    html = doc.css('table a').detect{|a|a.text =~ /Read this book online/}.attr("href")
+    epub = doc.css('table a').detect{|a|a.text =~ /EPUB/}.attr("href")
+    kindle = doc.css('table a').detect{|a|a.text =~ /Kindle/}.attr("href")
+
+    download_links = {:html => html, :epub => epub, :kindle => kindle}
   end
 
 end
