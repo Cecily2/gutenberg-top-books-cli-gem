@@ -1,28 +1,10 @@
 # GutenbergTopBooks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gutenberg_top_books`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'gutenberg_top_books'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install gutenberg_top_books
+A CLI interface that allows the user to view the X most downloaded books on Project Gutenberg in a specified time range and request a download link.
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the bin/start file to start the CLI.
 
 ## Development
 
@@ -32,7 +14,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gutenberg_top_books.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Cecily2/gutenberg_top_books.
 
 ## License
 
