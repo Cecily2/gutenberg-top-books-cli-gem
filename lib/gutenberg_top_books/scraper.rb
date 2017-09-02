@@ -1,9 +1,8 @@
 class GutenbergTopBooks::Scraper
 
   def self.scrape_list(time, count)
-    books_array = []
     doc = Nokogiri::HTML(open("https://www.gutenberg.org/browse/scores/top/index.html", "Accept-Encoding" => ""))
-    doc.css("h2#books-last#{time} + ol li")[0 .. count-1].each do |book|
+    doc.css("h2#books-last#{time} + ol li")[0 .. count-1].collect do |book|
       if book.css("a").text.include?(" by ")
         book_info = book.css("a").text.split(" by ")
         title = book_info[0]
@@ -13,9 +12,9 @@ class GutenbergTopBooks::Scraper
         author = "N/A"
       end
       link = book.css("a").attribute("href").value
-      books_array << { :title => title, :author => author, :link => link }
+
+      { :title => title, :author => author, :link => link }
     end
-    books_array
   end
 
   def self.scrape_download_links(url)
