@@ -8,9 +8,13 @@ class GutenbergTopBooks::List
   def add_to_list(list)
     list.each do |book|
       title = book[:title]
-      author = book[:author]
       link = book[:link]
-      new_book = GutenbergTopBooks::Book.new(title, author, link)
+      if book[:author]
+        author = book[:author]
+        new_book = GutenbergTopBooks::Book.new(title, link, author)
+      else
+        new_book = GutenbergTopBooks::Book.new(title, link)
+      end
       @list << new_book
     end
   end
@@ -19,7 +23,7 @@ class GutenbergTopBooks::List
     @list.each.with_index(1) do |book, index|
       index > 9 ? space = " " : space = "  "
       puts "#{index}.#{space}#{book.title}"
-      puts "    by #{book.author}"
+      puts "    by #{book.author}" if book.author
       puts "--------------------"
     end
   end

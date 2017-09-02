@@ -1,10 +1,10 @@
 class GutenbergTopBooks::Book
   attr_accessor :title, :author, :link, :html, :epub, :kindle
 
-  def initialize(title, author, link)
+  def initialize(title, link, author = nil)
     @title = title
-    @author = author
     @link = link
+    @author = author unless author == nil
   end
 
   def add_download_urls(attributes)
