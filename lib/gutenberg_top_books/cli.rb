@@ -2,6 +2,7 @@ class GutenbergTopBooks::CLI
 
   def run
     # Get time period and item count preferences from user
+    puts "Welcome to the Gutenberg Top Books CLI Gem!"
     time = choose_data_time
     @count = choose_title_count
 
@@ -21,11 +22,12 @@ class GutenbergTopBooks::CLI
     # Allow user to choose a format to download
     download_choice = choose_download_options
     open_in_browser(book_object, download_choice)
+
   end
 
   def choose_data_time
-    puts "When would you like to view data for?"
-    puts "Yesterday  |  Last 7 Days   |  30 Days"
+    puts "Which time period would you like to view the top books for?"
+    puts "Yesterday  |  Last 7 Days   |  Last 30 Days"
     time = gets.strip
     if time == "1" || time.downcase == "yesterday"
       answer = 1
@@ -41,7 +43,7 @@ class GutenbergTopBooks::CLI
   end
 
   def choose_title_count
-    puts "How many titles would you like to see? (Enter 1-100)"
+    puts "How many titles would you like to see? Enter 1-100:"
     count = gets.strip
     answer = count.to_i
     if answer < 1 || answer > 100
@@ -63,7 +65,7 @@ class GutenbergTopBooks::CLI
   end
 
   def choose_download_options
-    puts "View in browser: HTML, ePub, or Kindle?"
+    puts "Enter a format to view in browser - HTML, ePub, or Kindle:"
     choice = gets.strip
     answer = choice.downcase
     unless answer.include?("html") || answer.include?("epub") || answer.include?("kindle")
